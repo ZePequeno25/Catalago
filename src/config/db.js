@@ -3,7 +3,6 @@ const {MongoClient} = require('mongodb');
 const path = require('path');
 
 dotenv.config({path: path.join(__dirname, '..','..', '.env')});
-console.log('Variável de ambiente mongoURI:', process.env.mongoURI);
 
 const client = new MongoClient(process.env.mongoURI);
 
