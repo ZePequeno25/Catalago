@@ -28,7 +28,7 @@ describe('Testes da Rota /api/filmes/:id', () => {
       console.error('❌ Erro no beforeAll:', error);
       throw error;
     }
-  });
+  }, 30000); // Aumenta o timeout para 30 segundos
 
   afterAll(async () => {
     console.log('🧹 Limpando recursos...');

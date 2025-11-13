@@ -97,33 +97,34 @@ const postMovie = async (req, res) => {
 }
 
 const getMoviesByDate = async (req, res) => {
-    
-    const {date} = req.body;
-    console.log(`[MoviesController] Buscando filmes pela data: ${date}`);
+    const { date } = req.query; // Usando query parameter
 
-    const { error, value } = schema2.validate(date);
-    if(error){
-        const validationMessage = `Erro de validação: campo "${error.details[0].context.key}" é obrigatorio.`;
+    if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
         return res.status(400).json({
             status: 'error',
-            code: 400,
-            message: validationMessage
+            message: 'Parâmetro "date" inválido. Use formato YYYY-MM-DD.',
+            code: 400
         });
     }
-    console.log('Data validada:', value);
-    try{
-        
-        const movies = await MoviesModel.MoviesByDate(value);
 
-        if(movies == null || movies.length === 0){
+    console.log(`[MoviesController] Buscando filmes pela data: ${date}`);
+
+    try {
+        const movies = await MoviesModel.getMoviesByDate(date);
+
+        if (!movies || movies.length === 0) {
             return res.status(404).json({
                 status: 'error',
                 message: 'Nenhum filme encontrado para a data especificada.',
                 code: 404
             });
-        } else {
-            return res.status(200).json(movies);
         }
+
+        return res.status(200).json({
+            status: 'success',
+            data: movies,
+            code: 200
+        });
 
     } catch (error) {
         console.error('Erro ao buscar filmes por data:', error);
@@ -133,7 +134,7 @@ const getMoviesByDate = async (req, res) => {
             code: 500
         });
     }
-}
+};
 
 module.exports = {
     getMovies,

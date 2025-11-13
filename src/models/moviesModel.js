@@ -37,18 +37,21 @@ const postMovie = async (movieData) => {
     return { ...movieData, _id: result.insertedId };
 }
 
-const MoviesByDate = async (date) => {
-    console.log(`[MoviesModel] Buscando filmes com data: ${date} no banco de dados`);
+const getMoviesByDate = async (dateString) => {
+    console.log(`[MoviesModel] Buscando filmes com data: ${dateString}`);
     const db = await connectToDatabase();
 
-    const movies = await db.collection('movies').findAll({ created_at: date }).toArray();
+    // Assumindo que created_at é string no formato 'YYYY-MM-DD'
+    const movies = await db.collection('movies')
+        .find({ created_at: dateString })
+        .toArray();
 
     return movies;
-}
+};
 
 module.exports = {
     getMovies,
     getMovieById,
     postMovie,
-    MoviesByDate
+    getMoviesByDate
 };
