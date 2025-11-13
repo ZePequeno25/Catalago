@@ -4,6 +4,7 @@ const Users = require('../controllers/usersController');
 const Auth = require('../utils/auth');
 const MoviesController = require('../controllers/moviesController');
 
+<<<<<<< HEAD
 // === ROTAS DE USUÁRIOS ===
 router.post('/api/users', Users.addUser);                    // cadastro
 router.post('/api/users/auth', Users.authUser);              // login
@@ -16,5 +17,12 @@ router.get('/api/filme/date', MoviesController.getMoviesByDate);
 router.get('/api/filmes', MoviesController.getMovies);
 router.get('/api/filmes/:id', MoviesController.getMovieById);
 router.post('/api/filmes', MoviesController.postMovie);
+=======
+router.get('/api/filmes/date', MoviesController.getMoviesByDate);
+router.get('/api/filmes', MoviesController.getMovies);
+router.get('/api/filmes/:id', MoviesController.getMovieById);
+router.post('/api/filmes', MoviesController.postMovie);
+
+>>>>>>> bc7a953 (ok)
 
 module.exports = router;
