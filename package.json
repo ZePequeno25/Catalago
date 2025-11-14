@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
   "name": "aula11-restfulapi",
   "version": "1.0.0",
@@ -24,23 +23,3 @@
     "jsonwebtoken": "^9.0.2"
   }
 }
-=======
-{
-  "name": "aula11-restfulapi",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "nodemon server.js",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
-  },
-  "devDependencies": {
-    "jest": "^30.2.0",
-    "mongodb": "^7.0.0",
-    "mongodb-memory-server": "^10.3.0",
-    "supertest": "^7.1.4"
-  }
-}
->>>>>>> bc7a953 (ok)
